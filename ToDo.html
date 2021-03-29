@@ -37,7 +37,8 @@ table, th, td {
         this.state = {
           tasks:[],
           input: "",
-          count:0
+          input1:""
+          
         };
       }
 
@@ -54,16 +55,21 @@ table, th, td {
    {this.state.tasks.map((task,i) =>
 <tr class="d" key={i}>
 
-   <td> {task}</td>
+   <td> <input onChange={this.setUpdate} id={i} value={this.state.input1=task} /></td>
    <td>
    <button  onClick={(event)=>{this.deleteTask(event,i)}}> &#128465;</button>
    </td>
+   
+    <td><button  onClick={()=> this.edit()} value={this.state.input1}>Edit</button></td>
+   
+   
    </tr>
    )} <br/>   
   
     <div>
-    <input onChange={this.UpdateResponse} value={this.state.input}/>
+    <input onChange={this.UpdateResponse} value={this.state.input} placeholder="Enter Task"/>
     <button onClick={this.addTask} > Add Task</button>  
+    <button onClick={this.update} style={{width:"20%", background:"green", padding:"10px", border:"1px solid green", color:"white"}}  >Update </button>
      
     </div>    
    </tbody>
@@ -79,15 +85,42 @@ table, th, td {
         });
       }
       addTask=(event)=>{
+        
         this.setState(state=>({
           tasks:[...state.tasks,state.input],
           input:"",
+          
+        
           
           
 
         }));
 
       }
+
+
+      
+
+      // setUpdate=(event)=>{
+      //   this.setState({
+      //     input:event.target.value
+
+      //   })
+        
+        
+
+      // }
+
+      edit=()=>{
+        
+        this.setState=({
+          input1:this.state.input,
+          
+        })
+
+
+      }
+
       deleteTask=(event,i)=>{
         var n=[...this.state.tasks]
         n.splice(i,1)
@@ -97,6 +130,58 @@ table, th, td {
         }));
 
       }
+
+
+  //     start=()=>{
+  //   if (!this.state.timer) {
+  //     this.state.startTime = Date.now();
+  //     this.timer = window.setInterval(() => this.run(), 1000);
+  //   }
+  // }
+
+
+  // run() {
+  //   const diff = Date.now() - this.state.startTime;
+    
+    // If you want to count up
+    // this.setState(() => ({
+    //  time: this.msToTime(diff)
+    // }));
+    
+    // count down
+  //   let remaining = this.state.duration - diff;
+  //   if (remaining < 0) {
+  //     remaining = 0;
+  //   }
+  //   this.setState(() => ({
+  //     time: this.msToTime(remaining)
+  //   }));
+  //   if (remaining === 0) {
+  //     window.clearTimeout(this.timer);
+  //     this.timer = null;
+  //   }
+  // }
+
+
+
+  // msToTime(duration) {
+    
+  //   let seconds = Math.floor((duration / 1000) % 60);
+  //   let minutes = Math.floor((duration / (1000 * 60)) % 60);
+  //   let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+  //   hours = hours.toString().padStart(2, '0');
+  //   minutes = minutes.toString().padStart(2, '0');
+  //   seconds = seconds.toString().padStart(2, '0');
+    
+
+  //   return {
+  //     hours,
+  //     minutes,
+  //     seconds,
+      
+  //   };
+  // }
 
 
 
